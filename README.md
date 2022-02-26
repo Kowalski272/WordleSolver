@@ -19,6 +19,7 @@ Corresponding Output to Submit to the Prompt: (GGGGX)
 Continue inputting words until the Wordle is solved!
 
 General Notes:
+
 Currently the program only accepts lower-case inputs. Capitalizing the first letter/any letters will request you resubmit an input (will be fixed in later versions).
 
 
