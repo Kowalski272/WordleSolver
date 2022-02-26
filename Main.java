@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        File file = new File(); // Import Dictionary
+        File file = new File(); // Import Dictionary usa.txt
         var testDict = new ImportDictionary(5,file); //Specify word length and file to pull words from
         int attempts = 6; // Attempts Allowable for Program
         var console = new Console(testDict);

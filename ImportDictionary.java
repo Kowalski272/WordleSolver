@@ -5,20 +5,20 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+// This class generates a dictionary with weighted values based on the frequency of each letter represented
 public class ImportDictionary {
 
-    private int length;
+    private int length; // User specified valid word length
     private String word;
-    private int count = 0;
-    private int counter = 0;
+    private int wordCount = 0;
+    private int letterCounter = 0;
     private File file;
     private Scanner scan;
     private ArrayList<String> dictionary = new ArrayList<String>();
     private HashMap<Character, Float> letterList = new HashMap<Character,Float>();
     private Map<String,Float> weightedDict = new ConcurrentHashMap<String,Float>();
-    private PriorityQueue<WordleSort> bestWords;
 
-
+    // Imports text file containing valid words
     public ImportDictionary(int length, File file) throws FileNotFoundException {
         this.length = length;
         this.file = file;
@@ -26,17 +26,20 @@ public class ImportDictionary {
         createScoredDict();
     }
 
+    // Creates a valid dictionary list with the specified letter count
     private ArrayList<String> createDictionary() {
         while (scan.hasNextLine()) {
             word = scan.nextLine();
             if (word.length() == length && !word.contains("'")) {
-                dictionary.add(count, word);
-                count++;
+                dictionary.add(wordCount, word);
+                wordCount++;
             }
         }
         return dictionary;
     }
 
+    // Assigns a score to each letter in the English alphabet
+    // Assigned score is later used to create a weighted score for each word in the dictionary
     private HashMap<Character, Float> createLetterScore() {
         ArrayList<String> dictionary = createDictionary();
         for(int i = 0; i < dictionary.size(); i++){
@@ -48,38 +51,41 @@ public class ImportDictionary {
                 else{
                     letterList.put(c,(float) 1);
                 }
-                counter++;
+                letterCounter++;
             }
         }
         for(Map.Entry<Character, Float> entry : letterList.entrySet()){
-            float weightedScore = entry.getValue()/counter;
+            float weightedScore = entry.getValue()/letterCounter;
             letterList.put(entry.getKey(),weightedScore);
         }
         return letterList;
     }
 
+    // Creates a hashmap with a weighted score assigned to each word in the dictionary
     private Map<String,Float> createScoredDict() {
         ArrayList<String> dictionary = createDictionary();
         HashMap<Character, Float> letterList = createLetterScore();
         float weightedValue = 0;
-        int count1 = 0;
+        int penalty = 0;
         for(int j = 0; j < dictionary.size(); j++){
-            char [] tempStorage = dictionary.get(j).toCharArray();
-            for (char c:tempStorage){
+            char [] storedWord = dictionary.get(j).toCharArray();
+            // for loop creates the weighted score, an increased penalty is applied if the same letter appears multiple times
+            for (char c:storedWord){
                 if(letterList.containsKey(c)){
                     weightedValue = weightedValue + letterList.get(c);
-                    String temp9 = "" + c;
-                    count1 = count1 + dictionary.get(j).length() - dictionary.get(j).replaceAll(temp9,"").length();
+                    String storedLetter = "" + c;
+                    penalty = penalty + dictionary.get(j).length() - dictionary.get(j).replaceAll(storedLetter,"").length();
                 }
             }
-            weightedValue = weightedValue/(count1 + 1);
-            count1 = 0;
+            weightedValue = weightedValue/(penalty + 1);
+            penalty = 0;
             this.weightedDict.put(dictionary.get(j),weightedValue);
             weightedValue = 0;
         }
         return this.weightedDict;
     }
 
+    // Returns the weighted dictionary for a user to see all of the assigned scores
     public Map<String, Float> getWeightedDict() {
         return this.weightedDict;
     }

@@ -2,6 +2,7 @@ package com.nguyen27;
 
 import java.util.Scanner;
 
+// This class handles reading the word and output submissions from the console
 public class Console {
     private Scanner scanner = new Scanner(System.in);
     private ImportDictionary dictionary;
