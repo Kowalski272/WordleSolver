@@ -19,6 +19,8 @@ Corresponding Output to Submit to the Prompt: (GGGGX)
 Continue inputting words until the Wordle is solved!
 
 General Notes:
-Currently the program only accepts lower-case inputs. Capitalizing the first letter/any letters will request you resubmit an input (will be fixed in later versions)
+Currently the program only accepts lower-case inputs. Capitalizing the first letter/any letters will request you resubmit an input (will be fixed in later versions).
+
+
 The program returns the top 3 words based on a calculated score. The score is determined by the frequency the letters show up throughout the entire dictionary.
 Higher scores are assigned to words without repeating words to help thin out the dictionary.
