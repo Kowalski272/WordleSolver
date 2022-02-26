@@ -1,7 +1,8 @@
 # WordleSolver
 
-Hello! This is the source code of a Wordle Solver I made in Java. To get started you'll need to modify the first line in Main to import the dictionary I used (referenced here as USA.txt)
+Hello! This is the source code of a Wordle Solver I made in Java. To get started you'll need to modify the first line in Main to import the dictionary I used (referenced here as USA.txt). 
 After executing the code it'll ask you for your first guess and the corresponding output from the Wordle game. The output is a continuous string corresponding to the colored output from Wordle.
+
 Green = G, Y = Yellow and X = Gray
 
 Ex: Inputted Word Arose, (A,R,O,E) were gray and S was yellow
