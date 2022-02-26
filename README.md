@@ -6,12 +6,14 @@ After executing the code it'll ask you for your first guess and the correspondin
 Green = G, Y = Yellow and X = Gray
 
 Ex: Inputted Word Arose, (A,R,O,E) were gray and S was yellow
+
 Corresponding Output to Submit to the Prompt: (XXXYX)
 
 From there the program will suggest the top 3 words based on frequency and highest probability of the remaining words left to try.
 In this example the highest suggested word was "spilt"
 
 Ex: Input word Spilt, (S,P,I,L) were green and T was gray
+
 Corresponding Output to Submit to the Prompt: (GGGGX)
 
 Continue inputting words until the Wordle is solved!
